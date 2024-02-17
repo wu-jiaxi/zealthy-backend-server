@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(cors());
@@ -76,3 +76,9 @@ app.get("/api/tickets", (req, res) => {
 });
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
+app.listen(port, "0.0.0.0", function () {
+  console.log(`Server running on port ${port}`);
+  app.use("/", (req, res) => {
+    res.send("welcome to the server");
+  });
+});
